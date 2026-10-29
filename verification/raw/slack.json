@@ -1,0 +1,368 @@
+{
+ "provider": "Slack",
+ "checked_on": "2026-10-28",
+ "pages": [
+  {
+   "url": "https://docs.slack.dev/authentication/installing-with-oauth/",
+   "fetched": true,
+   "note": "Read via summarizing WebFetch; quotes are fragments."
+  },
+  {
+   "url": "https://docs.slack.dev/app-management/quickstart-app-settings/",
+   "fetched": true,
+   "note": "Read; says 'Create an app' button, no Redirect URL content."
+  },
+  {
+   "url": "https://docs.slack.dev/app-management/distribution/",
+   "fetched": true,
+   "note": "Read."
+  },
+  {
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "fetched": true,
+   "note": "Read; no TLS/state/landing/privacy/collaborator content."
+  },
+  {
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-app-guidelines-and-requirements/",
+   "fetched": true,
+   "note": "Read; has TLS, state, collaborator, images, description, privacy/landing/support; no review timeline."
+  },
+  {
+   "url": "https://docs.slack.dev/authentication/using-token-rotation",
+   "fetched": true,
+   "note": "Extra page, read."
+  },
+  {
+   "url": "https://docs.slack.dev/changelog/2026/03/30/pkce",
+   "fetched": true,
+   "note": "Extra page, read."
+  }
+ ],
+ "claims": [
+  {
+   "ref": "prerequisites[0]",
+   "claim": "Need a Slack workspace as dev workspace",
+   "verdict": "confirmed",
+   "quote": "Select the Workspace where you'll be developing your app.",
+   "url": "https://docs.slack.dev/app-management/quickstart-app-settings/",
+   "correction": ""
+  },
+  {
+   "ref": "prerequisites[1]",
+   "claim": "HTTPS redirect URL; SSL needed for OAuth redirect, interaction, options-load, Events API URLs",
+   "verdict": "confirmed",
+   "quote": "The `redirect_uri` must use HTTPS. / Your app must support SSL for all of the following URLs:",
+   "url": "https://docs.slack.dev/authentication/installing-with-oauth/ ; https://docs.slack.dev/app-management/distribution/",
+   "correction": ""
+  },
+  {
+   "ref": "prerequisites[2]",
+   "claim": "10+ active workspaces, active = used in past 28 days",
+   "verdict": "confirmed",
+   "quote": "Your app has been installed on 10 or more active workspaces / An active workspace is a workspace that has been used in the past 28 days.",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "correction": ""
+  },
+  {
+   "ref": "prerequisites[2]-pages",
+   "claim": "Landing page, support page, privacy policy required",
+   "verdict": "corrected",
+   "quote": "your landing page needs to be publicly accessible (i.e. not behind a login) / All Slack Marketplace apps must include a clear privacy policy",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-app-guidelines-and-requirements/",
+   "correction": "Source is S5 (guidelines page), not S4; the review guide (S4) does not mention these pages. Add S5 to source list for this item."
+  },
+  {
+   "ref": "step-1",
+   "claim": "Create app via api.slack.com/apps?new_app=1 -> Create New App -> Blank app, choose dev workspace",
+   "verdict": "corrected",
+   "quote": "Select Blank app. Click Continue. / Select the Workspace where you'll be developing your app.",
+   "url": "https://docs.slack.dev/app-management/quickstart-app-settings/",
+   "correction": "Page's button is labeled 'Create an app', not 'Create New App'; 'Create New App' wording not found. Blank app and workspace selection confirmed. The new_app=1 URL itself is behind a button, not quoted."
+  },
+  {
+   "ref": "step-2",
+   "claim": "Add scopes in OAuth & Permissions and HTTPS Redirect URL(s)",
+   "verdict": "confirmed",
+   "quote": "Alternatively, you can configure a Redirect URL in the App Management page under OAuth & Permissions.",
+   "url": "https://docs.slack.dev/authentication/installing-with-oauth/",
+   "correction": "S2 does not mention Redirect URL; cite S1 only for the redirect part. S2 confirms 'Within OAuth & Permissions, scroll down to Scopes.'"
+  },
+  {
+   "ref": "step-3",
+   "claim": "Install to Workspace, Allow; token under OAuth Tokens",
+   "verdict": "confirmed",
+   "quote": "Install your app by selecting the Install to Workspace button. ... Select Allow ... You'll see an access token under OAuth Tokens.",
+   "url": "https://docs.slack.dev/app-management/quickstart-app-settings/",
+   "correction": ""
+  },
+  {
+   "ref": "step-4",
+   "claim": "Authorize URL with client_id, scope/user_scope, state",
+   "verdict": "confirmed",
+   "quote": "To request scopes, redirect Slack users to `https://slack.com/oauth/v2/authorize`. / provide a `user_scope` parameter ... instead of, or in addition to, the `scope` parameter.",
+   "url": "https://docs.slack.dev/authentication/installing-with-oauth/",
+   "correction": "client_id and state-as-parameter wording not separately quoted (paraphrase only for client_id); state check is quoted under step-5."
+  },
+  {
+   "ref": "step-5",
+   "claim": "Verify state, exchange code via oauth.v2.access, code expires in ten minutes",
+   "verdict": "confirmed",
+   "quote": "That's your temporary authorization code, which expires after ten minutes. / Check the `state` parameter if you sent one along with your initial user redirect.",
+   "url": "https://docs.slack.dev/authentication/installing-with-oauth/",
+   "correction": ""
+  },
+  {
+   "ref": "step-5-multi",
+   "claim": "Send same redirect_uri in both calls if several Redirect URLs configured",
+   "verdict": "confirmed",
+   "quote": "the parameter value must be the same for both steps \u2014 otherwise, you will encounter a `bad_redirect_uri` error",
+   "url": "https://docs.slack.dev/authentication/installing-with-oauth/",
+   "correction": "Note: the page's own text varies between `redirect_uri` and `redirect_url` for this sentence; the actual OAuth parameter is redirect_uri."
+  },
+  {
+   "ref": "step-6",
+   "claim": "Manage Distribution -> checklist -> Activate Public Distribution",
+   "verdict": "confirmed",
+   "quote": "Scroll to Share Your App with Other Workspaces within the Manage Distribution section. ... Ensure all items in the supplied checklist are completed. ... Click Activate Public Distribution.",
+   "url": "https://docs.slack.dev/app-management/distribution/",
+   "correction": ""
+  },
+  {
+   "ref": "step-7",
+   "claim": "Test on non-development workspace incl. uninstall; Slack cannot access your workspaces; test accounts/dummy data",
+   "verdict": "confirmed",
+   "quote": "We cannot access any Slack workspaces (even created for testing) / Please provide us with test accounts that include dummy data",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "correction": ""
+  },
+  {
+   "ref": "step-8-images",
+   "claim": "1600x1000 images",
+   "verdict": "confirmed",
+   "quote": "Use a 1600px by 1000px size (8:5 ratio).",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-app-guidelines-and-requirements/",
+   "correction": "Source is S5; S4 does not state it."
+  },
+  {
+   "ref": "step-8-description",
+   "claim": "Short description 10 words or fewer",
+   "verdict": "confirmed",
+   "quote": "Make sure to keep it short and sweet at 10 words (or fewer) so that it doesn't get cut off anywhere.",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-app-guidelines-and-requirements/",
+   "correction": ""
+  },
+  {
+   "ref": "step-8-video",
+   "claim": "Demo video of install/OAuth flow",
+   "verdict": "confirmed",
+   "quote": "For a new submission, it should include a video showing the full installation and OAuth flow",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "correction": "S5 only 'strongly recommends' a video; S4 says new submissions should include one. Guide wording 'a demo video' is OK but it is not phrased as hard requirement in S5."
+  },
+  {
+   "ref": "step-8-collaborator",
+   "claim": "A collaborator on the app",
+   "verdict": "confirmed",
+   "quote": "You must add a collaborator to your app.",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-app-guidelines-and-requirements/",
+   "correction": "Source is S5 only."
+  },
+  {
+   "ref": "callback[0]",
+   "claim": "redirect_uri HTTPS, match or be subdirectory of configured Redirect URL; no anchor",
+   "verdict": "confirmed",
+   "quote": "Your `redirect_uri` must match or be a subdirectory of a Redirect URL configured under App Management. / A Redirect URL can not contain an anchor (`#`).",
+   "url": "https://docs.slack.dev/authentication/installing-with-oauth/",
+   "correction": ""
+  },
+  {
+   "ref": "callback[1]",
+   "claim": "Same redirect_uri in both calls else bad_redirect_uri",
+   "verdict": "confirmed",
+   "quote": "the parameter value must be the same for both steps \u2014 otherwise, you will encounter a `bad_redirect_uri` error",
+   "url": "https://docs.slack.dev/authentication/installing-with-oauth/",
+   "correction": ""
+  },
+  {
+   "ref": "scopes[0]",
+   "claim": "bot scopes in scope, user scopes in user_scope; additive, cannot downgrade; optional scopes via manifest",
+   "verdict": "confirmed",
+   "quote": "each scope you request is additive to the scopes you've already been awarded. / It is not possible to downgrade an access token's scopes. / Add optional scopes to the `bot_optional` or `user_optional` fields",
+   "url": "https://docs.slack.dev/authentication/installing-with-oauth/",
+   "correction": ""
+  },
+  {
+   "ref": "scopes[1]",
+   "claim": "Marketplace: least privilege, reason per scope, legacy/restricted/extensive-data scopes not permitted",
+   "verdict": "corrected",
+   "quote": "adhere to the 'principle of least privilege' ... / provide clear reasons for each of the scopes ... / DON'T request legacy/restricted scopes. / We are unlikely to approve broad access to workspace message/file data",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-app-guidelines-and-requirements/",
+   "correction": "'Extensive-data scopes not permitted' is too strong: page says broad message/file access is 'unlikely to be approved'. Legacy/restricted: 'DON'T request'."
+  },
+  {
+   "ref": "testing[0]",
+   "claim": "Quickstart install via Install to Workspace",
+   "verdict": "confirmed",
+   "quote": "Install your app by selecting the Install to Workspace button.",
+   "url": "https://docs.slack.dev/app-management/quickstart-app-settings/",
+   "correction": ""
+  },
+  {
+   "ref": "testing[1]",
+   "claim": "Marketplace review expects non-dev workspace testing incl. uninstall, test accounts/dummy data, demo video",
+   "verdict": "confirmed",
+   "quote": "on a workspace that is not your development workspace / including uninstalling it / a video showing the full installation and OAuth flow",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "correction": ""
+  },
+  {
+   "ref": "publishing[0]",
+   "claim": "Public distribution; deactivating removes app from other workspaces; Marketplace-listed cannot be disabled",
+   "verdict": "confirmed",
+   "quote": "This will remove the app from any workspaces that have installed it, aside from the original associated workspace. / you cannot disable distribution in this way once your app is published within the Slack Marketplace",
+   "url": "https://docs.slack.dev/app-management/distribution/",
+   "correction": ""
+  },
+  {
+   "ref": "publishing[1]",
+   "claim": "Review: 10 business days preliminary; 10 weeks new; 6 weeks resubmission; cannot skip/accelerate",
+   "verdict": "confirmed",
+   "quote": "the preliminary part of the review takes up to 10 business days to receive feedback / the functional review takes up to 10 weeks for new submissions / 6 weeks for published apps resubmitting changes / We are unable to skip or accelerate the review process in order to coordinate with your launch",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "correction": "Quotes are from fragments returned by the fetch tool (verbatim fragments, not full sentences)."
+  },
+  {
+   "ref": "publishing[2]",
+   "claim": "Marketplace apps need TLS 1.2+, request verification (signing secret or mTLS), state parameter",
+   "verdict": "corrected",
+   "quote": "As of February 19, 2020, your app must use TLS version 1.2 or greater to continue using Slack endpoints. / your app must use the state parameter when requesting access to customer data during the OAuth flow",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-app-guidelines-and-requirements/",
+   "correction": "Source is S5, not S4 (S4 has none of these). Signing secret/mTLS: only found 'The signing secret should be protected like a password' and 'These methods should be used instead of verification tokens'; exact 'signing secret or mTLS' requirement is paraphrase only."
+  },
+  {
+   "ref": "publishing[3]",
+   "claim": "Some workspaces admin-only or Marketplace-only; guided request interface",
+   "verdict": "confirmed",
+   "quote": "Some workspaces will restrict app installation so that only workspace administrators can provide authorization. / Other workspaces may only allow the installation of apps officially listed in the Slack Marketplace.",
+   "url": "https://docs.slack.dev/app-management/distribution/",
+   "correction": ""
+  },
+  {
+   "ref": "blockers[0]",
+   "claim": "bad_redirect_uri on mismatch / inconsistent redirect_uri",
+   "verdict": "confirmed",
+   "quote": "otherwise, you will encounter a `bad_redirect_uri` error",
+   "url": "https://docs.slack.dev/authentication/installing-with-oauth/",
+   "correction": "Page states error for inconsistent value across steps; mismatch with configured URL not separately quoted (paraphrase only for that half)."
+  },
+  {
+   "ref": "blockers[1]",
+   "claim": "10 active installs needed; incomplete submissions returned; pilot via unlisted distribution",
+   "verdict": "confirmed",
+   "quote": "Your app has been installed on 10 or more active workspaces / We will return submissions that are not ready for review.",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "correction": "Suggested 'pilot with unlisted public distribution' is advice, not in the page (unsupported as a quote, reasonable)."
+  },
+  {
+   "ref": "blockers[2]",
+   "claim": "Granular permissions upgrade irreversible",
+   "verdict": "confirmed",
+   "quote": "Upgrading to granular permissions is a fundamental change to your app. It cannot be undone.",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "correction": ""
+  },
+  {
+   "ref": "blockers[3]",
+   "claim": "New scopes on published app mean re-review; demo video or staging app",
+   "verdict": "confirmed",
+   "quote": "Adding new scopes to your app / Please note: the staging version itself does not need to be submitted for review, but we do need a way to install it.",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "correction": "Listed under 'Changes that will require a video demo/test app'; page says scopes cannot change 'without re-submitting the app for review'."
+  },
+  {
+   "ref": "blockers[4]",
+   "claim": "Admin approval; no turnaround time stated",
+   "verdict": "confirmed",
+   "quote": "Some workspaces will restrict app installation so that only workspace administrators can provide authorization.",
+   "url": "https://docs.slack.dev/app-management/distribution/",
+   "correction": "No timing found, matching guide."
+  },
+  {
+   "ref": "approval_wait",
+   "claim": "No Slack review for own install; Marketplace timelines; admin approval no timing",
+   "verdict": "confirmed",
+   "quote": "the functional review takes up to 10 weeks for new submissions",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "correction": "'No review for own install/public distribution' is absence-of-statement: unsupported as a positive quote, but consistent with S2/S3 flow."
+  },
+  {
+   "ref": "difficulty_explanation",
+   "claim": "Marketplace requires 10+ active installs, landing/support/privacy pages, demo video, multi-stage review",
+   "verdict": "confirmed",
+   "quote": "Your app has been installed on 10 or more active workspaces",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-review-guide/",
+   "correction": "Landing/support/privacy are from S5; demo video from S4 (new submission should include)."
+  },
+  {
+   "ref": "effort",
+   "claim": "~1-3 h hands-on estimate",
+   "verdict": "unsupported",
+   "quote": "",
+   "url": "",
+   "correction": "Author's own estimate; no official page states it."
+  },
+  {
+   "ref": "agent_can_do/developer_must_do",
+   "claim": "Marketplace copy short description <10 words",
+   "verdict": "corrected",
+   "quote": "Make sure to keep it short and sweet at 10 words (or fewer)",
+   "url": "https://docs.slack.dev/slack-marketplace/slack-marketplace-app-guidelines-and-requirements/",
+   "correction": "agent_can_do says 'under 10 words'; official is '10 words (or fewer)'. Step 8 is correct."
+  },
+  {
+   "ref": "unknowns[0]",
+   "claim": "Localhost redirect URLs not addressed",
+   "verdict": "corrected",
+   "quote": "Desktop redirects (custom URI schemes and localhost) can't request bot scopes.",
+   "url": "https://docs.slack.dev/changelog/2026/03/30/pkce",
+   "correction": "Localhost redirects are now mentioned, in the PKCE changelog (Mar 30 2026), in the context of PKCE-enabled apps and desktop redirects. Note: S1 itself still does not address localhost and states redirect_uri must use HTTPS; treat localhost as supported only for PKCE-enabled public-client apps, and verify before relying."
+  },
+  {
+   "ref": "unknowns[1]",
+   "claim": "Max number of Redirect URLs unknown",
+   "verdict": "unsupported",
+   "quote": "",
+   "url": "",
+   "correction": "Not stated on S1; still unknown."
+  },
+  {
+   "ref": "unknowns[2]",
+   "claim": "Rate limits not on pages read",
+   "verdict": "unsupported",
+   "quote": "",
+   "url": "",
+   "correction": "Not checked/not on pages fetched; remains unknown for these pages."
+  },
+  {
+   "ref": "unknowns[3]",
+   "claim": "Token rotation applicability",
+   "verdict": "corrected",
+   "quote": "Token rotation may not be turned off once it's turned on. / With token rotation, it expires every 12 hours.",
+   "url": "https://docs.slack.dev/authentication/using-token-rotation",
+   "correction": "Can now be resolved: rotation is opt-in (enabled by the app), irreversible, 12-hour access tokens; Marketplace apps 'can have' it enabled via Published App Settings (not stated as mandatory). PKCE-enabled apps: refresh tokens expire after 30 days; custom-URI-scheme installs always get rotating tokens (changelog)."
+  },
+  {
+   "ref": "unknowns[4]",
+   "claim": "Admin approval time unknown",
+   "verdict": "confirmed",
+   "quote": "",
+   "url": "",
+   "correction": "No timing found on S3 (consistent)."
+  }
+ ],
+ "missing": [
+  "PKCE became GA on 2026-03-30: 'PKCE can now be enabled directly in your app settings without contacting Slack support.' Enabling is one-way, PKCE params are required for custom URI scheme redirects, refresh tokens expire after 30 days (changelog URL above).",
+  "Token rotation: once turned on it cannot be turned off; access tokens then expire every 12 hours (using-token-rotation page).",
+  "Marketplace requires TLS 1.2+ and use of the state parameter (S5), and the SSL requirement list for redirect/interaction/options-load/Events URLs (S3) - the guide attributes some of these to the wrong source."
+ ]
+}
